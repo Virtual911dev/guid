@@ -1,0 +1,4 @@
+<div *ngIf="user">
+  Caller id {{receiverID}}<button (click)="sendMessage(receiverID, callID)">Send link to caller</button>
+  <div class="col-12" style="height:480px" id="callScreen"></div>
+</div>
