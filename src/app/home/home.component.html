@@ -1,4 +1,55 @@
-<div *ngIf="user">
-  Caller id {{receiverID}}<button (click)="sendMessage(receiverID, callID)">Send link to caller</button>
-  <div class="col-12" style="height:480px" id="callScreen"></div>
+<div class="card-body">
+  <h4 class="card-title">Virtual 911</h4>
+  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque</p>
+  <div *ngIf="callers.length==0">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border mr-2" role="status">
+        <span></span>
+      </div>Waiting 911 callers...
+    </div>
+  </div>
+  <div *ngFor="let call of callers">
+    <div class="d-flex text-muted pt-3">
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <strong class="text-gray-dark">@{{call.uid}}</strong>
+          <button data-toggle="collapse" *ngIf="call.status!='send'" [attr.data-target]="'callScreen-' + call.uid"
+            aria-expanded="true" [attr.aria-controls]="'callScreen-' + call.uid" class="btn btn-primary pull-right"
+            (click)="sendMessage(call)">Send link to
+            caller</button>
+          <span *ngIf="call.sessionId">Session id: <b>{{call.sessionId}}</b></span>
+        </div>
+        <span class="d-block">Latitude: {{call.latitude}}, Longitude: {{call.longitude}}
+        </span>
+        <button data-toggle="collapse" data-target="#multiCollapse" aria-expanded="false" aria-controls="multiCollapse"
+          class="btn btn-warning pull-right" (click)="showMap(call.latitude, call.longitude)">Map</button>
+        <button *ngIf="call.status=='send'" class="ml-2 btn btn-danger" (click)="stopCall(call.uid)">Stop</button>
+        <div class="col-12 collapse" style="height:480px" id="callScreen-{{call.uid}}">
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-12 collapse" id="multiCollapse">
+    <agm-map [latitude]="lat" [longitude]="long" [zoom]="17" [zoomControl]="true">
+      <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+    </agm-map>
+  </div>
+</div>
+<div class="card-footer">
+  <div *ngFor="let call of history">
+    <div class="d-flex text-muted pt-3">
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <strong class="text-gray-dark">@{{call.uid}}</strong>
+          <span>Session id: <b>{{call.sessionId}}</b></span>
+        </div>
+        <span class="d-block">Latitude: {{call.latitude}}, Longitude: {{call.longitude}}
+        </span>
+        <button data-toggle="collapse" data-target="#multiCollapse" aria-expanded="false" aria-controls="multiCollapse"
+          class="btn btn-warning pull-right" (click)="showMap(call.latitude, call.longitude)">Map</button>
+          <a href="#" class="ml-2 btn btn-success">Record media</a>
+      </div>
+    </div>
+  </div>
 </div>

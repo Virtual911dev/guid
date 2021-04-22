@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
@@ -20,6 +21,11 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@cometchat-pro/chat": "^2.2.1",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.0",
+    "bootstrap": "^4.6.0",
+    "install": "^0.13.0",
+    "jquery": "^3.6.0",
+    "npm": "^7.10.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
