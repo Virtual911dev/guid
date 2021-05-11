@@ -12,14 +12,15 @@ export class HomeComponent implements OnInit {
   public sessionId;
   public callers = [];
   public history = [];
-  //lat = 51.678418;
-  //long = 7.809007;
   lat; long;
   constructor(
     private cdRef: ChangeDetectorRef) {
-    CometChat.login("v911", COMETCHAT_CONSTANTS.AUTH_KEY).then(
+  }
+  login() {
+    CometChat.login("v911pro", COMETCHAT_CONSTANTS.AUTH_KEY).then(
       (user) => {
         console.log("Login Successful:", { user });
+        this.addListeners();
       },
       (error) => {
         console.log("Login failed with exception:", { error });
@@ -27,7 +28,12 @@ export class HomeComponent implements OnInit {
     );
   }
   ngOnInit(): void {
-    this.addListeners();
+    CometChat.logout().then(() => {
+      this.login();
+    }, err => {
+      this.login();
+    });
+    
   }
 
   startCall(uid, sessionID) {
@@ -58,6 +64,7 @@ export class HomeComponent implements OnInit {
           console.log("onUserLeft:", userList);
         },
         onCallEnded: call => {
+          debugger;
           this.stopCall(uid);
         },
         onError: error => {

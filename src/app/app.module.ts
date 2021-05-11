@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AgmCoreModule } from '@agm/core';
-
+import { PrivacyComponent } from './privacy/privacy.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
