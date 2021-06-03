@@ -1,11 +1,11 @@
 <div class="card-body">
   <h4 class="card-title">Virtual 911 Pro center</h4>
-  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque</p>
+  <p class="card-text"></p>
   <div *ngIf="callers.length==0">
     <div class="d-flex justify-content-center">
       <div class="spinner-border mr-2" role="status">
         <span></span>
-      </div>Waiting 911 callers...
+      </div>Awaiting emergency calls...Dispatcher sends a direct text to the caller in order to enable the video and GPS location.
     </div>
   </div>
   <div *ngFor="let call of callers">
